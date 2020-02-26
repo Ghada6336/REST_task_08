@@ -75,6 +75,14 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_past_bookings(self, obj):
 
+        #if date < date.today():
+        #tomorrow = BookingSerializer((obj.date - date.today()).days)
+        #if (tomorrow) < 1 :
+            #return  BookingSerializer(Booking.objects.filter(user=obj.user, date__gte=date.today()), many=True).data
+        #else:
+            #return False
+
+
         return BookingSerializer(Booking.objects.filter(user=obj.user, date__lt=date.today()), many=True).data
 
     def get_tier(self, obj):
